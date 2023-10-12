@@ -28,11 +28,11 @@ class Baptized extends Model
     }
 
     public function parentt(){
-        return $this->belongsTo(Parentt::class);
+        return $this->belongsTo(Parentt::class, 'id_padre');
     }
 
     public function celebrant(){
-        return $this->belongsTo(Celebrant::class);
+        return $this->belongsTo(Celebrant::class, 'id_celebrante');
     }
 
 }

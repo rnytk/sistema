@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Filament\Resources\ParishpriestResource\Pages;
+namespace App\Filament\Resources\PermissionResource\Pages;
 
-use App\Filament\Resources\ParishpriestResource;
+use App\Filament\Resources\PermissionResource;
 use Filament\Actions;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\CreateRecord;
 
-class CreateParishpriest extends CreateRecord
+class CreatePermission extends CreateRecord
 {
-    protected static string $resource = ParishpriestResource::class;
+    protected static string $resource = PermissionResource::class;
 
       protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');
     }
-
+    
     protected function getCreatedNotification(): ?Notification
     {
         return Notification::make()
             ->success()
-            ->title('Parroco creado')
-            ->body('Parroco creado exitosamente.');
+            ->title('Permiso creado')
+            ->body('Permiso creado exitosamente.');
     }
 }
