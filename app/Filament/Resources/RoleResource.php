@@ -7,6 +7,7 @@ use App\Filament\Resources\RoleResource\RelationManagers;
 use Spatie\Permission\Models\Role;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -32,6 +33,11 @@ class RoleResource extends Resource
                     TextInput::make('name')
                     ->required()
                     ->maxLength(255)
+                    ->unique(ignoreRecord:true),
+                
+                    Select::make('permissions')
+                        ->multiple()
+                        ->relationship('permissions', 'name')->preload()
                 ])
             ]);
     }
@@ -41,14 +47,19 @@ class RoleResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')->sortable(),
-                TextColumn::make('name')->sortable()->searchable(),
-                TextColumn::make('created_at')->dateTime()
+                TextColumn::make('name')->sortable()->searchable()
+                    ->label('Nombre'),
+                TextColumn::make('created_at')->dateTime('d-M-Y')
+                    ->label('Fecha de creacion') ,
+                    
+                    
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

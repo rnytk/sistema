@@ -59,9 +59,11 @@ class UserResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')->sortable(),
-                TextColumn::make('name')->sortable()->searchable(),
+                TextColumn::make('name')->sortable()->searchable()
+                     ->label('Nombre'),
                 TextColumn::make('email')->sortable()->searchable(),
-                TextColumn::make('created_at')->dateTime()
+                TextColumn::make('created_at')->dateTime('d-M-Y')
+                     ->label('Fecha de creacion') ,
             ])
             ->filters([
                 //

@@ -20,7 +20,7 @@ class CreateCertificate extends CreateRecord
         return Notification::make()
             ->success()
             ->title('Certificado registrado')
-            ->body('Certificado registrado exitosamente.');
+            ->body('El certificado ha sido registrado exitosamente.');
     }
 
 }

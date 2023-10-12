@@ -21,7 +21,8 @@ class PermissionResource extends Resource
 {
     protected static ?string $model = Permission::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-lock-closed';
+     protected static ?string $navigationGroup = 'ADMINISTRACION DE USUARIOS';
 
     public static function form(Form $form): Form
     {
@@ -32,7 +33,7 @@ class PermissionResource extends Resource
                     TextInput::make('name')
                     ->required()
                     ->maxLength(200)
-                    ->unique()
+                    ->unique(ignoreRecord:true),
                 ])
             ]);
     }
@@ -42,14 +43,17 @@ class PermissionResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')->sortable(),
-                TextColumn::make('name')->sortable()->searchable(),
-                TextColumn::make('created_at')->dateTime()
+                TextColumn::make('name')->sortable()->searchable()
+                    ->label('Nombre'),
+                TextColumn::make('created_at')->dateTime('d-M-Y')
+                    ->label('Fecha de creacion') ,
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

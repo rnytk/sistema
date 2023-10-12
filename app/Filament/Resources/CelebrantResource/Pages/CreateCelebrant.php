@@ -20,6 +20,6 @@ class CreateCelebrant extends CreateRecord
         return Notification::make()
             ->success()
             ->title('Celebrante Creado')
-            ->body('Celebrante creado exitosamente.');
+            ->body('El celebrante ha sido registrado exitosamente.');
     }
 }

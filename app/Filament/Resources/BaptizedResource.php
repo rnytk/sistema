@@ -65,8 +65,14 @@ class BaptizedResource extends Resource
                 TextColumn::make('nombre')->sortable()->searchable()->toggleable(),
                 TextColumn::make('apellido')->sortable()->searchable(),
                 TextColumn::make('fecha_nacimiento')->sortable(),
-                TextColumn::make('created_at')->dateTime(),
+                TextColumn::make('created_at')->dateTime()
+                       ->label('Fecha de creacion'),
                 TextColumn::make('godparentt.nombre_uno')
+                       ->label('Padrinos'),
+                TextColumn::make('parentt.nombre_dos', 'parentt.nombre_dos')
+                       ->label('Padres'),
+                TextColumn::make('celebrant.nombre')
+                       ->label('Celebrante'),
         
             ])
             ->filters([

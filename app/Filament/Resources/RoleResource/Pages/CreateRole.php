@@ -21,6 +21,6 @@ class CreateRole extends CreateRecord
         return Notification::make()
             ->success()
             ->title('Rol Creado')
-            ->body('Rol creado exitosamente.');
+            ->body('El rol ha sido registrado exitosamente.');
     }
 }

@@ -52,10 +52,14 @@ class GodparenttResource extends Resource
                 ->label('Nombre Padrino') ,
                 TextColumn::make('apellido_uno')->sortable()->searchable()
                 ->label('Apellido Padrino') ,
-                TextColumn::make('dpi_uno')->sortable()->searchable(),
-                TextColumn::make('nombre_dos')->sortable()->searchable(),
-                TextColumn::make('apellido_dos')->sortable()->searchable(),
-                TextColumn::make('dpi_dos')->sortable()->searchable(),  
+                TextColumn::make('dpi_uno')->sortable()->searchable()
+                    ->label('DPI'),
+                TextColumn::make('nombre_dos')->sortable()->searchable()
+                     ->label('Nombre madrina'),
+                TextColumn::make('apellido_dos')->sortable()->searchable()
+                     ->label('Apellido madrina'),
+                TextColumn::make('dpi_dos')->sortable()->searchable()
+                     ->label('DPI')
             ])
             ->filters([
                 //
