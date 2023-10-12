@@ -24,7 +24,7 @@ class Baptized extends Model
     ];
 
     public function godparentt(): BelongsTo  {
-        return $this->belongsTo(Godparentt::class);
+        return $this->belongsTo(Godparentt::class, 'id_padrino');
     }
 
     public function parentt(){

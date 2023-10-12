@@ -12,11 +12,11 @@ class CreateGodparentt extends CreateRecord
     protected static string $resource = GodparenttResource::class;
 
     protected function getCreatedNotification(): ?Notification
-{
-    return Notification::make()
-        ->success()
-        ->title('Padrinos registrado')
-        ->body('Los padrinos han sido registrado exitosamente.');
-}
+    {
+        return Notification::make()
+            ->success()
+            ->title('Padrinos registrado')
+            ->body('Los padrinos han sido registrado exitosamente.');
+    }
 
 }
