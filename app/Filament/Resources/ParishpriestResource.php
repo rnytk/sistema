@@ -6,6 +6,7 @@ use App\Filament\Resources\ParishpriestResource\Pages;
 use App\Filament\Resources\ParishpriestResource\RelationManagers;
 use App\Models\Parishpriest;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -22,18 +23,31 @@ class ParishpriestResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-device-tablet';
     protected static ?string $navigationLabel = 'Parroco';
-    protected static ?string $navigationGroup = 'ADMINISTRACION DEL SITEMA';  
+    protected static ?string $navigationGroup = 'ADMINISTRACION DEL SITEMA';
     protected static ?int $navigationSort = 6;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                 TextInput::make('nombre'),
-                TextInput::make('apellido'),
-                 TextInput::make('dpi'),
-                  TextInput::make('estado'),
-               
+                TextInput::make('nombre')
+                    ->alpha()
+                    ->required(),
+                TextInput::make('apellido')
+                    ->alpha()
+                    ->required(),
+                TextInput::make('dpi')
+                    ->mask('9999 99999 9999')
+                    ->placeholder('9999 99999 9999')
+                    ->numeric()
+                    ->length(13)
+                    ->required(),
+                Select::make('estado')
+                    ->options([
+                        '1' => 'Activo',
+                        '0' => 'Inactivo'
+                    ])
+                    ->required()
             ]);
     }
 
@@ -55,14 +69,14 @@ class ParishpriestResource extends Resource
                 ]),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -70,5 +84,5 @@ class ParishpriestResource extends Resource
             'create' => Pages\CreateParishpriest::route('/create'),
             'edit' => Pages\EditParishpriest::route('/{record}/edit'),
         ];
-    }    
+    }
 }

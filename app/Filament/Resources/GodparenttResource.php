@@ -21,26 +21,34 @@ class GodparenttResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
     protected static ?string $navigationLabel = 'Padrinos';
-    protected static ?string $navigationGroup = 'ADMINISTRACION DEL SITEMA';  
+    protected static ?string $navigationGroup = 'ADMINISTRACION DEL SITEMA';
     protected static ?int $navigationSort = 2;
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('nombre_uno')
+                    ->alpha()
                     ->required(),
                 TextInput::make('apellido_uno')
+                    ->alpha()
                     ->required(),
                 TextInput::make('dpi_uno')
-                    ->required()
-                    ->maxLength(13),
+                    ->mask('9999 99999 9999')
+                    ->placeholder('9999 99999 9999')
+                    ->numeric()
+                    ->length(13),
                 TextInput::make('nombre_dos')
+                    ->alpha()
                     ->required(),
                 TextInput::make('apellido_dos')
+                    ->alpha()
                     ->required(),
                 TextInput::make('dpi_dos')
-                    ->required()
-                    ->maxLength(13)
+                    ->mask('9999 99999 9999')
+                    ->placeholder('9999 99999 9999')
+                    ->numeric()
+                    ->length(13),
             ]);
     }
 
@@ -48,18 +56,30 @@ class GodparenttResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nombre_uno')->sortable()->searchable()
-                ->label('Nombre Padrino') ,
-                TextColumn::make('apellido_uno')->sortable()->searchable()
-                ->label('Apellido Padrino') ,
-                TextColumn::make('dpi_uno')->sortable()->searchable()
+                TextColumn::make('nombre_uno')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Nombre Padrino') ,
+                TextColumn::make('apellido_uno')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Apellido Padrino') ,
+                TextColumn::make('dpi_uno')
+                    ->sortable()
+                    ->searchable()
                     ->label('DPI'),
-                TextColumn::make('nombre_dos')->sortable()->searchable()
-                     ->label('Nombre madrina'),
-                TextColumn::make('apellido_dos')->sortable()->searchable()
-                     ->label('Apellido madrina'),
-                TextColumn::make('dpi_dos')->sortable()->searchable()
-                     ->label('DPI')
+                TextColumn::make('nombre_dos')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Nombre madrina'),
+                TextColumn::make('apellido_dos')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Apellido madrina'),
+                TextColumn::make('dpi_dos')
+                    ->sortable()
+                    ->searchable()
+                    ->label('DPI')
             ])
             ->filters([
                 //
@@ -73,14 +93,14 @@ class GodparenttResource extends Resource
                 ]),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -88,5 +108,5 @@ class GodparenttResource extends Resource
             'create' => Pages\CreateGodparentt::route('/create'),
             'edit' => Pages\EditGodparentt::route('/{record}/edit'),
         ];
-    }    
+    }
 }

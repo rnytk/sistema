@@ -21,18 +21,24 @@ class CertificateResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationLabel = 'Certificado';
-    protected static ?string $navigationGroup = 'ADMINISTRACION DEL SITEMA';  
+    protected static ?string $navigationGroup = 'ADMINISTRACION DEL SITEMA';
     protected static ?int $navigationSort = 4;
-    
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-
-                DatePicker::make('fecha_bautismo'),
-                TextInput::make('lugar_bautismo'),
-                TextInput::make('no_libro'),
-                TextInput::make('no_folio'),
+                DatePicker::make('fecha_bautismo')
+                    ->required(),
+                TextInput::make('lugar_bautismo')
+                    ->alphaNum()
+                    ->required(),
+                TextInput::make('no_libro')
+                    ->alphaNum()
+                    ->required(),
+                TextInput::make('no_folio')
+                    ->alphaNum()
+                    ->required(),
                 TextInput::make('id_bautizado')
             ]);
     }
@@ -55,14 +61,14 @@ class CertificateResource extends Resource
                 ]),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -70,5 +76,5 @@ class CertificateResource extends Resource
             'create' => Pages\CreateCertificate::route('/create'),
             'edit' => Pages\EditCertificate::route('/{record}/edit'),
         ];
-    }    
+    }
 }
