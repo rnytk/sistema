@@ -14,6 +14,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\TextColumn;
 
 class CertificateResource extends Resource
 {
@@ -33,7 +35,10 @@ class CertificateResource extends Resource
                 TextInput::make('lugar_bautismo'),
                 TextInput::make('no_libro'),
                 TextInput::make('no_folio'),
-                TextInput::make('id_bautizado')
+                Select::make('id_bautizado')
+                ->relationship(name: 'baptized', titleAttribute: 'nombre')
+                ->searchable(['nombre','apellido']),
+
             ]);
     }
 
@@ -41,7 +46,16 @@ class CertificateResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('baptized.nombre')->sortable()->searchable()
+                    ->label('Nombres'),
+                TextColumn::make('baptized.apellido')
+                    ->label('Apellido'),
+                // TextColumn::make('baptized')
+                //     ->label('Nombre'),
+                TextColumn::make('fecha_bautismo')->sortable()->dateTime('d-M-Y'),
+                TextColumn::make('lugar_bautismo')->sortable(),
+                TextColumn::make('no_libro')->sortable(),
+                TextColumn::make('no_folio')->sortable(),
             ])
             ->filters([
                 //

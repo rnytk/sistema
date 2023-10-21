@@ -4,7 +4,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\RoleResource\Pages;
 use App\Filament\Resources\RoleResource\RelationManagers;
-use Spatie\Permission\Models\Role;
+use App\Models\Role;
+// use Spatie\Permission\Models\Role;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Select;
@@ -35,9 +36,7 @@ class RoleResource extends Resource
                     ->maxLength(255)
                     ->unique(ignoreRecord:true),
                 
-                    Select::make('permissions')
-                        ->multiple()
-                        ->relationship('permissions', 'name')->preload()
+                    
                 ])
             ]);
     }
@@ -82,5 +81,10 @@ class RoleResource extends Resource
             'create' => Pages\CreateRole::route('/create'),
             'edit' => Pages\EditRole::route('/{record}/edit'),
         ];
-    }    
+    }   
+    
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->where('name', '!=', 'Administrador');
+    }
 }

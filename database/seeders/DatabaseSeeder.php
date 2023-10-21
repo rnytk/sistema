@@ -25,5 +25,8 @@ class DatabaseSeeder extends Seeder
         $role = Role::create(['name' => 'Administrador']);
 
         $user->assignRole($role);
+
+         \App\Models\Parentt::factory(10)->create();
+         \App\Models\Godparentt::factory(10)->create();
     }
 }

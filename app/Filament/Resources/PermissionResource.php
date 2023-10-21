@@ -4,8 +4,10 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PermissionResource\Pages;
 use App\Filament\Resources\PermissionResource\RelationManagers;
+use App\Models\Permission;
 // use App\Models\Permission;
-use Spatie\Permission\Models\Permission;
+// use Spatie\Permission\Models\Permission;
+
 use Filament\Forms;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\TextInput;

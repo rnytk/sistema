@@ -51,6 +51,8 @@ class AppPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+
+            ->brandLogo(fn () => view('https://www.flaticon.es/icono-gratis/iglesia_619070?term=iglesia&page=1&position=4&origin=search&related_id=619070filament.admin.logo'));
     }
 }

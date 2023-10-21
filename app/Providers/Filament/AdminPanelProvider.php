@@ -65,8 +65,8 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->sidebarCollapsibleOnDesktop();
+            ->sidebarCollapsibleOnDesktop()
 
-            
+            ->brandLogo(asset('images/iglesia.png'));
     }
 }

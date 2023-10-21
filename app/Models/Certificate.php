@@ -11,7 +11,7 @@ class Certificate extends Model
 {
     use HasFactory;
 
-    protected $filiable = [
+    protected $fillable = [
         'fecha_bautismo',
         'lugar_bautismo',
         'no_libro',
@@ -21,6 +21,6 @@ class Certificate extends Model
     ];
 
     public function baptized(){
-        return$this->belongsTo(Baptized::class);
+        return$this->belongsTo(Baptized::class, 'id_bautizado');
     }
 }
