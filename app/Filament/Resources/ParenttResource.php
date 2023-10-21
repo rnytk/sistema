@@ -21,9 +21,9 @@ class ParenttResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
     protected static ?string $navigationLabel = 'Padres';
-    protected static ?string $navigationGroup = 'ADMINISTRACION DEL SITEMA';  
+    protected static ?string $navigationGroup = 'ADMINISTRACION DEL SITEMA';
     protected static ?int $navigationSort = 1;
-    
+
     public static function form(Form $form): Form
     {
         return $form
@@ -35,8 +35,11 @@ class ParenttResource extends Resource
                     ->required()
                     ->maxLength(100),
                 TextInput::make('dpi_uno')
-                    ->required()
-                    ->maxLength(13),
+                    ->mask('9999 99999 9999')
+                    ->placeholder('9999 99999 9999')
+                    ->numeric()
+                    ->length(13)
+                    ->required(),
                 TextInput::make('nombre_dos')
                     ->required()
                     ->maxLength(50),
@@ -44,8 +47,11 @@ class ParenttResource extends Resource
                     ->required()
                     ->maxLength(50),
                 TextInput::make('dpi_dos')
-                    ->required()
-                    ->maxLength(50)
+                    ->mask('9999 99999 9999')
+                    ->placeholder('9999 99999 9999')
+                    ->numeric()
+                    ->length(13)
+                    ->required(),
             ]);
     }
 
@@ -64,8 +70,8 @@ class ParenttResource extends Resource
                 TextColumn::make('apellido_dos')->sortable()->searchable()
                 ->label('Apellido'),
                 TextColumn::make('dpi_dos')->sortable()->searchable()
-                ->label('DPI'),  
-                
+                ->label('DPI'),
+
             ])
             ->filters([
                 //
@@ -79,11 +85,11 @@ class ParenttResource extends Resource
                 ]),
             ]);
 
-            
-            
-         
+
+
+
     }
-    
+
     public static function getRelations(): array
     {
         return [
@@ -103,5 +109,5 @@ class ParenttResource extends Resource
             'create' => Pages\CreateParentt::route('/create'),
             'edit' => Pages\EditParentt::route('/{record}/edit'),
         ];
-    }    
+    }
 }
