@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CertificateResource\Pages;
 use App\Filament\Resources\CertificateResource\RelationManagers;
 use App\Models\Certificate;
+use Filament\Actions\Modal\Actions\Action;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Tabs\Tab;
 use Filament\Tables\Columns\TextColumn;
 
 class CertificateResource extends Resource
@@ -30,21 +32,10 @@ class CertificateResource extends Resource
     {
         return $form
             ->schema([
-<<<<<<< HEAD
-
-                DatePicker::make('fecha_bautismo'),
-                TextInput::make('lugar_bautismo'),
-                TextInput::make('no_libro'),
-                TextInput::make('no_folio'),
-                Select::make('id_bautizado')
-                ->relationship(name: 'baptized', titleAttribute: 'nombre')
-                ->searchable(['nombre','apellido']),
-
-=======
                 DatePicker::make('fecha_bautismo')
                     ->required(),
                 TextInput::make('lugar_bautismo')
-                    ->alphaNum()
+                    // ->alphaNum()
                     ->required(),
                 TextInput::make('no_libro')
                     ->alphaNum()
@@ -53,7 +44,6 @@ class CertificateResource extends Resource
                     ->alphaNum()
                     ->required(),
                 TextInput::make('id_bautizado')
->>>>>>> b8cf8ab9808f38221efa853a1d73831d788cb654
             ]);
     }
 
@@ -77,6 +67,16 @@ class CertificateResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+            // Action::make('Dowload Pdf'),
+            // ->icon('heroicon-o-docuemtn-dowload')
+            // ->link(fn(Certificate $record)=> route('certificate.pdf, $tr'))
+
+                Tables\Actions\Action::make('Dowload Pdf')
+                ->icon('heroicon-o-arrow-down-tray'),
+                
+
+
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

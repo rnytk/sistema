@@ -35,7 +35,7 @@ class BaptizedResource extends Resource
                     ->alpha()
                     ->required(),
                 TextInput::make('apellido')
-                    ->alpha()
+                    // ->alpha()
                     ->required(),
                 DatePicker::make('fecha_nacimiento')
                     ->required(),

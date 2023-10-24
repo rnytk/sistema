@@ -38,7 +38,7 @@ class ParenttResource extends Resource
                     ->mask('9999 99999 9999')
                     ->placeholder('9999 99999 9999')
                     ->numeric()
-                    ->length(13)
+                    // ->length(13)
                     ->required(),
                 TextInput::make('nombre_dos')
                     ->required()
@@ -50,7 +50,7 @@ class ParenttResource extends Resource
                     ->mask('9999 99999 9999')
                     ->placeholder('9999 99999 9999')
                     ->numeric()
-                    ->length(13)
+                    // ->length(13)
                     ->required(),
             ]);
     }
