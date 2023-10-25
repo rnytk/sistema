@@ -68,15 +68,10 @@ class CertificateResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
-            // Action::make('Dowload Pdf'),
-            // ->icon('heroicon-o-docuemtn-dowload')
-            // ->link(fn(Certificate $record)=> route('certificate.pdf, $tr'))
-
                 Tables\Actions\Action::make('Dowload Pdf')
-                ->icon('heroicon-o-arrow-down-tray'),
-                
-
-
+                    ->icon('heroicon-o-arrow-down-tray')
+                    ->url(fn(Certificate $record) => route('certificate.pdf.download', $record))
+                    ->openUrlInNewTab(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
